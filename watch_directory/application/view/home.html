@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Conversion1</title>
+        <link href="<?php echo BASE_PATH;?>/css/stylesheet.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="<?php echo BASE_PATH;?>/css/style.css" />
+        <script type="text/javascript" src="<?php echo BASE_PATH;?>/js/css-pop.js"></script>
+        <script>
+                    var siteUrl = "<?PHP echo ROOT_URI ?>";
+                    var taskId = "<?PHP echo $wftId ?>";</script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script>
+                    function changeWindow(dType){
+                    var el = document.getElementById(dType);
+                            el.style.display = 'block';
+                            var el2 = document.getElementById('dashboardWindow');
+                            el2.style.display = 'none';
+                    }
+        </script>
+        <script type="text/javascript" src="<?php echo BASE_PATH;?>/js/jquery.easyui.min.js"></script>
+              <script>
+                    $(function(){
+                    $.ajax({
+                    url:"application/controller/workflow_controller.php",
+                            type:"POST",
+                            data:"actionfunction=showData&page=1",
+                            cache: false,
+                            success: function(response){
+
+                            $('#pagination').html(response);
+                            }
+
+                    });
+                            $('#pagination').on('click', '.page-numbers', function(){
+                    $page = $(this).attr('href');
+                            $pageind = $page.indexOf('page=');
+                            $page = $page.substring(($pageind + 5));
+                            $.ajax({
+                            url:"application/controller/workflow_controller.php",
+                                    type:"POST",
+                                    data:"actionfunction=showData&page=" + $page,
+                                    cache: false,
+                                    success: function(response){
+
+                                    $('#pagination').html(response);
+                                    }
+
+                            });
+                            return false;
+                    });
+                            });        </script>
+    </head>
+    <body>
+                    <!-- .............  wrapper starts ...................  -->
+                    <div id="wrapper">
+                        <div class='innerwrapper'>
+                            <!-- .............  Left navigation ...................  -->
+                            <div id="leftNav">
+                                <div class="forLOgo"><a href="index.php"><img src="<?php echo BASE_PATH;?>/images/logo.png" /></a></div>
+                                <div id="mainNav">
+                                    <ul>
+                                        <li><a href="#" id="navigation" onclick="changeWindow('dashboardWindow')">Dashboard</a></li>
+                                        <li><a href="#" onclick="popup('popUpDiv')">New Workflow</a></li>
+                                        <li><a href="#" id="navigation" onclick="changeWindow('openWindow')">Open Workflow</a></li>
+                                        <li><a href="#" id="navigation" onclick="changeWindow('settingWindow')">Setting</a></li>
+                                        <li><a href="#" id="navigation" onclick="changeWindow('userWindow')">User management</a></li>
+                                        <li><a href="xmltoxml.php">Xml to xml Conversion</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- .............  right content  ...................  -->
+                            <div id="rightContent">
+                                <div class="rightHead">
+                                    <a href="#"><img src="<?php echo BASE_PATH;?>/images/setting.png" /></a>
+                                    <a href="#" class="userName">Dashboard</a>
+                                    <div class="sideEdge"></div>
+                                </div>
+                                <div class="mainContent">
+                                    <div class="forPholder" id="dashboardWindow">
+                                        <ul>
+                                            <li>
+                                                <div class="rowHolder">
+                                                    <div class="holders">Dashboard</div>
+                                                    <div class="holders last"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="rowHolder">
+                                                    <div class="holders"></div>
+                                                    <div class="holders last"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="rowHolder">
+                                                    <div class="holders"></div>
+                                                    <div class="holders last"></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="forPholder display-none" id="openWindow">
+                                        <ul>
+                                            <li>
+                                                <div class="rowHolder">
+                                                    
+                                                    <div id="pagination" cellspacing="0">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="forPholder display-none" id="settingWindow">
+                                        <ul>
+                                            <li>
+                                                <div class="rowHolder">
+                                                    <div class="holders">Setting</div>
+                                                    <div class="holders last"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="rowHolder">
+                                                    <div class="holders"></div>
+                                                    <div class="holders last"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="rowHolder">
+                                                    <div class="holders"></div>
+                                                    <div class="holders last"></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="forPholder display-none" id="userWindow">
+                                        <ul>
+                                            <li>
+                                                <div class="rowHolder">
+                                                    <div class="holders">User</div>
+                                                    <div class="holders last"></div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="rowHolder">
+                                                    <div class="holders"></div>
+                                                    <div class="holders last"></div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="rowHolder">
+                                                    <div class="holders"></div>
+                                                    <div class="holders last"></div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                      <div class="forPholder display-none" id="xmlWindow">
+                                        <form id="THEFORM" action="application/controller/xmlconvert.php" method="post">
+                                                                                        <table class="options">
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <div id="uploader_div"></div>
+                                                                                                    <fieldset>
+                                                                                                        <legend>Uploaded File Content</legend>
+                                                                                                        <textarea rows="6" cols="79" readonly="readonly" name="filetext" id="filetext"></textarea><br/>
+                                                                                                        <input type="text" value="" readonly="readonly" size="57" name="filecontent" id="filecontent" />
+                                                                                                        <div class="padding-top-10"></div>
+                                                                                                    </fieldset>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <div id="uploader_div"></div>
+                                                                                                    <fieldset>
+                                                                                                        <legend>Select Configuration</legend>
+                                                                                                        <div class="padding-top-5">
+                                                                                                            <?php echo $selOpt; ?>
+                                                                                                            OR 
+                                                                                                            <input type="text" value="" class="tablename" placeholder="Add New Config" id="newconfig" name="newconfig" />
+                                                                                                        </div>
+                                                                                                    </fieldset>
+                                                                                                    <fieldset>
+                                                                                                        <legend>Add Table</legend>
+                                                                                                        <div class="padding-top-5">
+                                                                                                            <input type="text" value="" class="tablename" placeholder="Table Name" id="tablename" name="tablename" />
+                                                                                                        </div>
+                                                                                                        <div class="padding-top-10"></div>
+                                                                                                    </fieldset>
+                                                                                                    <fieldset>
+                                                                                                        <legend>Add Fields</legend>
+                                                                                                        <div class="padding-top-5">
+                                                                                                            <input type="text" onchange="updateValue(this.value, '0')" placeholder="Location" value="" class="location" id="location0" name="location[]" />
+                                                                                                            <input type="text" value="" placeholder="Field Name" id="field0" name="field[]" />
+                                                                                                            <input type="text" value="" id="value0" name="value0" readonly="readonly" />
+                                                                                                        </div>
+                                                                                                        <div id="TextBoxesGroup"></div>
+                                                                                                        <div class="add-field">
+                                                                                                            <input type="button" value="Add Field" class="add-field-button" onclick="addField()" />
+                                                                                                        </div>
+                                                                                                        <div class="padding-top-10"></div>
+                                                                                                        <div class="batch-individual">
+                                                                                                            <input type="hidden" value="" id="filename" name="filename" readonly="readonly" />
+                                                                                                            Batch <input type="radio" name="filetype" value="batch" value="Run" />  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                                            Individual <input type="radio" value="individual" checked="checked" name="filetype" value="Run" />  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                                            <button type="submit" class="btn-class-common">Run</button>
+                                                                                                            </form>
+                                                                                                           
+                                                                                                        </div>
+                                                                                                        <div class="padding-top-10"></div>
+                                                                                                    </fieldset>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .............  right content ends  ...................  -->
+                        <form id="WorkFlowForm" action="application/controller/workflow_controller.php" method="post">
+                            <div id="blanket" style="display:none;">
+                                <div class="popUp" id="popUpDiv" style="display:none;">
+                                    <div class="popHead">
+                                        <h2>New Workflow</h2>
+                                        <a href="#" class="cancel" onclick="popup('popUpDiv', 'wf')">Text</a>
+                                    </div>
+                                    <div class="popContent">
+                                        <p>
+                                            <label>Name</label>
+                                            <input type="text" name="wfname" id="wfname" value="" />
+                                        </p>
+                                        <p>
+                                            <label>Description</label>
+                                            <input type="text" name="wfdesc" id="wfdesc" value="" />
+                                        </p>
+                                    </div>
+                                    <div class="popFoot">
+                                        <button type="submit" value="aaa" class="create">Create</button>
+                                        <a href="javascript:void(0);" class="cancelPop" onclick="popup('popUpDiv', 'wf')">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <script type="text/javascript">
+                                $(function(){
+                                $('#WorkFlowForm').form({
+                                success:function(data){
+                                // Display message and close popup box
+                                if (data == 'success'){
+                                alert('Workflow created successfully.');
+                                        $("#wfname").val('');
+                                        $("#wfdesc").val('');
+                                        blanket_size('popUpDiv');
+                                        window_pos('popUpDiv');
+                                        toggle('blanket');
+                                        toggle('popUpDiv');
+                                        location.reload(true);
+                                } else if (data == 'error'){
+                                alert('Something went wrong, please try again.');
+                                } else {
+                                alert(data);
+                                }
+                                }
+                                });
+                                });
+                    </script>
+                    </body>
+                    </html>

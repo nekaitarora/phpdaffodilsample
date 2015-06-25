@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Conversion1</title>
+    <link href="<?php echo BASE_PATH;?>/css/stylesheet.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="<?php echo BASE_PATH;?>/js/css-pop.js"></script>
+    <script>
+        var siteUrl = "<?PHP echo ROOT_URI ?>";
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo BASE_PATH;?>/js/jquery.easyui.min.js"></script>
+</head>
+<body>
+    <!-- .............  wrapper starts ...................  -->
+    <div id="wrapper">
+        <div class='innerwrapper'>
+            <!-- .............  Left navigation ...................  -->
+            <div id="leftNav">
+                 <div class="forLOgo"><a href="index.php"><img src="<?php echo BASE_PATH;?>/images/logo.png" /></a></div>
+                 <div id="mainNav">
+                    <ul>
+                        <li><a href="workflow.php?id=<?php echo $wfId['id'];?>"><?php echo ucfirst($wfData['wf_name']);?></a></li>
+                        <li><a href="task-list.php?id=<?php echo $wfId['id'];?>">Task List</a></li>
+                    </ul>
+                 </div>
+            </div>
+            <!-- .............  right content  ...................  -->
+            <div id="rightContent">
+                 <div class="rightHead">
+                 <a href="#"><img src="<?php echo BASE_PATH;?>/images/setting.png" /></a>
+                       <a href="#" class="userName">Dashboard</a>
+                       <div class="sideEdge"></div>
+                 </div>
+                 <div class="mainContent">
+                    <div class="forPholder" id="openWindow">
+                          <ul>
+                              <li>
+                                  <div class="rowHolder">
+                                      <ul style="float: left; display: inline; width: 100%;">
+                                          <li style="float: left; width: 5%;"><b>SNo.</b></li>
+                                          <li style="float: left; width: 15%; padding-left: 10px;"><b>Configuration</b></li>
+                                          <li style="float: left; width: 15%; padding-left: 50px;"><b>Source Path</b></li>
+                                          <li style="float: left; width: 15%; padding-left: 50px;"><b>Destination Path</b></li>
+                                          <li style="float: left; width: 15%; padding-left: 50px;"><b>Status</b></li>
+                                          <li style="float: left; padding-left: 40px;"><b>Created On</b></li>
+                                      </ul>
+                                      <?php if(!empty($wfTaskList)){ foreach($wfTaskList as $key => $val) { ?>
+                                      <ul style="float: left; display: inline; width: 100%;">
+                                          <li style="float: left; width: 5%;"><?php echo $key+1;?>)</li>
+                                          <li style="float: left; width: 15%; padding-left: 10px;"><?php echo ucfirst($val['configuration_name']);?></li>
+                                          <li style="float: left; width: 15%; padding-left: 50px;"><?php echo $val['schedule_sourcedir_path'];?></li>
+                                          <li style="float: left; width: 15%; padding-left: 50px;"><?php echo $val['schedule_destdir_path'];?></li>
+                                          <li style="float: left; width: 15%; padding-left: 50px;"><?php if($val['schedule_configured'] != '') { echo "<span style='color:green;'>Configured</span>"; } else { echo "<span style='color:#FF0000;'>Not Configured</span>"; }?></li>
+                                          <li style="float: left; padding-left: 40px;"><a href="workflow.php?id=<?php echo $wfId['id'];?>&tid=<?php echo $val['schedule_id'];?>&dir=<?php echo $val['schedule_sourcedir_path'];?>&dir2=<?php echo $val['schedule_destdir_path'];?>">[Edit]</a> / <a href="#" onclick="deleteTask(<?php echo $val['schedule_id'];?>)">[Delete]</a></li>
+                                      </ul>
+                                      <?php } } ?>
+                                  </div>
+                              </li>
+                          </ul>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        <!-- .............  right content ends  ...................  -->
+        <form id="WorkFlowForm" action="application/controller/workflow_controller.php" method="post">
+        <div id="blanket" style="display:none;">
+           <div class="popUp" id="popUpDiv" style="display:none;">
+                 <div class="popHead">
+                       <h2>New Workflow</h2>
+                       <a href="#" class="cancel" onclick="popup('popUpDiv','wf')">Text</a>
+                 </div>
+                 <div class="popContent">
+                    <p>
+                        <label>Name</label>
+                        <input type="text" name="wfname" id="wfname" value="" />
+                    </p>
+                    <p>
+                        <label>Description</label>
+                        <input type="text" name="wfdesc" id="wfdesc" value="" />
+                    </p>
+                 </div>
+                 <div class="popFoot">
+                       <button type="submit" value="aaa" class="create">Create</button>
+                       <a href="javascript:void(0);" class="cancelPop" onclick="popup('popUpDiv','wf')">Cancel</a>
+                 </div>
+           </div>
+        </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $('#WorkFlowForm').form({
+                success:function(data){
+                }
+            });
+        });
+    </script>
+</body>
+</html>

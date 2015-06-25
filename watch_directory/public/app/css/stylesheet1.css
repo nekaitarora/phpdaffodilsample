@@ -1,0 +1,63 @@
+@font-face {font-family: 'sansSerif-reg'; src: url('fonts/RotisSansSerifStd-Regular.eot');src: local('Sans-sarif'), url('fonts/RotisSansSerifStd-Regular.ttf') format('truetype'),  url('fonts/RotisSansSerifStd-Regular.woff') format('woff'), url('fonts/RotisSansSerifStd-Regular.svg') format('svg'); }
+
+@font-face {font-family: 'sansSerif-light'; src: url('fonts/RotisSansSerifStd-Light.eot');src: local('Sans-sarif-light'), url('fonts/RotisSansSerifStd-Light.ttf') format('truetype'),  url('fonts/RotisSansSerifStd-Light.woff') format('woff'), url('fonts/RotisSansSerifStd-Light.svg') format('svg'); }
+
+body {font-family:'sansSerif-reg', Verdana, Arial, Helvetica; font-size:14px;}
+#mainNav ul li a {padding:15px; display:block; color:#333; text-align:right; font-family:font-family:'sansSerif-light', Verdana, Arial, Helvetica; font-size:18px;}
+* {outline:none;}
+html, body, #wrapper {height:100%; min-height:100%;}
+body, h1, h2, h3, ul, li, p {margin:0; padding:0;}
+ul {list-style:none;}
+a {text-decoration:none;}
+
+#leftNav {width:350px; min-height:500px; float:left; background:#ebf5ff; height:100%;}
+.forLOgo {text-align:center; padding:15px 0; background:#FFF;}
+#mainNav ul li {border-bottom:1px solid #CCC;}
+#mainNav ul li:last-child {border:none;}
+#mainNav ul li a {padding:15px; display:block; color:#333; text-align:right;}
+#mainNav ul li a:hover {background:#d3e8fd;}
+
+#rightContent {margin-left:350px; min-height:500px;}
+.rightHead {padding:7px 15px; background:#102b46; color:#FFF;}
+.rightHead a {display:inline-block; color:#FFF;}
+.rightHead a.userName {vertical-align:top; margin-left:10px;}
+
+.mainContent {padding:50px;}
+
+.forPholder ul li {margin-bottom:50px;}
+.rowHolder {overflow:hidden;}
+.rowHolder .holders { width:48%; margin-right:3%; border:1px solid #CCC; min-height:200px; float:left; }
+.rowHolder .holders.last {margin-right:0;}
+
+/* pop up css */
+.popUp {background:#e6ebee; width:40%; margin:0 auto; border-radius:10px; overflow:hidden; border:2px solid #CCC; opacity: 1;}
+.popHead {padding:15px 0; position:relative; text-align:center; background:#FFF;}
+.popHead a.cancel {position:absolute; right:10px; top:10px; display:inline-block; background:url(../images/cancelBotton.png) no-repeat center; width:18px; height:18px; text-indent:-99999px;}
+
+.popContent {padding:30px 0;}
+.popContent p {text-align:center; margin-bottom:6px;}
+.popContent p label {width:150px; margin-right:10px; display:inline-block; text-align:right;}
+.popContent p input[type="text"] {width:60%; height:27px; border-radius:5px; border:1px solid #CCC;}
+
+.popFoot {padding:15px 0; border-top:1px solid #999; text-align:center;}
+.popFoot button {background:none; border:none; padding:5px 15px; cursor:pointer;}
+.popFoot button.create {background:url(../images/buttonBg.png) repeat-x; border:1px solid #FFF; color:#FFF; padding:5px 28px; border-radius:5px;}
+.cancelPop {background: none repeat scroll 0 0 rgba(0, 0, 0, 0);border: medium none; cursor: pointer; padding: 5px 15px;}
+.popFoot a {color: #000000;}
+/*STYLES FOR CSS POPUP*/
+#popUpDiv {
+    position:absolute;	
+}
+#blanket {
+   background-color:rgba(0,0,0,0.3);
+   *background:none;
+   position:absolute;
+   z-index: 9001;
+   top:0px;
+   left:0px;
+   width:100%;
+}
+.display-none {
+    display: none;
+}
+

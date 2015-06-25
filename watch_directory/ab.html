@@ -1,0 +1,52 @@
+<html>
+<head>
+<script>  
+   function updatetext() {  
+       var pt = document.getElementById("R1").value;  
+      
+       if(pt == add) {  
+           document.getElementById("text3").disabled = true;  
+       }  
+       else {  
+           document.getElementById("text3").disabled = false;  
+       }  
+   }  
+</script> </head><body>
+    <form action="adddelstudent" method="get">  
+       
+        <table cellspacing="5" border="0">  
+          <tr>  
+            <td align="right">First Name:</td>  
+            <td><input type="text" id="text1" name="firstName"></td>  
+          </tr>  
+            
+          <tr>  
+            <td align="right">Last Name:</td>  
+            <td><input type="text" id="text2" name="lastName"></td>  
+          </tr>  
+            
+          <tr>  
+            <td align="right">ID:</td>  
+            <td><input type="text" id="text3" name="ID" ></td>  
+          </tr>  
+            
+          <tr>  
+            <td></td>  
+            <td>  
+              <input type="radio" name="adddel" id="R1" value="add" onclick="updatetext()" checked>Add  
+            </td>  
+          <tr>  
+            <td></td>  
+              <td>  
+              <input type="radio" name="adddel" id="R2" value="del" onclick="updatetext()" >Delete  
+            </td>  
+          </tr>  
+      
+          <tr>  
+            <td></td>  
+            <td><br><input type="submit" value="Submit">  
+          </tr>  
+            
+        </table>  
+          
+     </form>  </html>
